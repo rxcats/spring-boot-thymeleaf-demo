@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
 <head>
+    <meta charset="UTF-8">
     <title>Admin Page</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link th:href="@{/sb-admin-5.0.2/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/sb-admin-5.0.2/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet">
+    <link th:href="@{/sb-admin-5.0.2/css/sb-admin.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -24,14 +23,15 @@
             <div class="panel-heading">
                 <span th:utext="${userName}"></span>
             </div>
-            <div class="panel-body">
-                <img th:src="@{/images/beer.jpg}" class="img-responsive center-block" width="400" height="400"
-                     alt="Beer"/>
-            </div>
+            <div class="panel-body"></div>
             <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
         </div>
     </div>
 
 </div>
+
+<script th:src="@{/sb-admin-5.0.2/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/sb-admin-5.0.2/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
 </body>
 </html>

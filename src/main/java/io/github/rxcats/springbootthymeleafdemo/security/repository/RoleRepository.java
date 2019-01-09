@@ -1,9 +1,10 @@
 package io.github.rxcats.springbootthymeleafdemo.security.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import io.github.rxcats.springbootthymeleafdemo.security.entity.Role;
 
-public interface UserRoleRepository extends JpaRepository<Role, Long> {
+public interface RoleRepository extends MongoRepository<Role, ObjectId> {
     Role findByRole(String role);
 }

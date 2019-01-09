@@ -1,25 +1,23 @@
 package io.github.rxcats.springbootthymeleafdemo.security.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
 
 import lombok.Data;
 
-@Table(name = "role")
-@Entity
+@Document
 @Data
-public class Role {
+public class Role implements GrantedAuthority {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_id")
-    private long roleId;
+    private ObjectId roleId;
 
-    @Column(name = "role")
     private String role;
 
+    @Override
+    public String getAuthority() {
+        return role;
+    }
 }

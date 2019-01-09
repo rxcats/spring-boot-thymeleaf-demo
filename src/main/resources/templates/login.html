@@ -1,34 +1,62 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-
 <head>
+    <meta charset="UTF-8">
     <title>Spring Security Tutorial</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link th:href="@{/sb-admin-5.0.2/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/sb-admin-5.0.2/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet">
+    <link th:href="@{/sb-admin-5.0.2/css/sb-admin.css}" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-dark">
 <form th:action="@{/registration}" method="get">
     <button class="btn btn-md btn-warning btn-block" type="Submit">Go To Registration Page</button>
 </form>
 
 <div class="container">
-    <img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo"/>
-    <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Welcome"></h3>
-        <br/>
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Login</div>
+        <div class="card-body">
 
-        <input type="text" id="email" name="email" th:placeholder="Email" class="form-control" /> <br/>
-        <input type="password" th:placeholder="Password" id="password" name="password" class="form-control" /> <br/>
+            <form th:action="@{/login}" method="POST">
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="email" id="email" name="email" th:placeholder="Email" class="form-control"
+                               required="required" autofocus="autofocus">
+                        <label for="email">Email address</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="password" id="password" name="password" th:placeholder="Password"
+                               class="form-control" required="required">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
 
-        <div align="center" th:if="${param.error}">
-            <p style="font-size: 20px; color: #FF1C19;">Email or Password invalid, please verify</p>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me">
+                            Remember Password - Not Working!
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
+                        th:text="Login"></button>
+
+                <div align="center" th:if="${param.error}">
+                    <p style="font-size: 20px; color: #FF1C19;">Email or Password invalid, please verify</p>
+                </div>
+            </form>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit" th:text="Login"></button>
-    </form>
+    </div>
 </div>
+
+<script type="text/javascript" th:src="@{/sb-admin-5.0.2/vendor/jquery/jquery.min.js}"></script>
+<script type="text/javascript" th:src="@{/sb-admin-5.0.2/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/sb-admin-5.0.2/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
 </body>
 </html>

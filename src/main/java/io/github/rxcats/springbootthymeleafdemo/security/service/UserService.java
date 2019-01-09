@@ -1,6 +1,7 @@
 package io.github.rxcats.springbootthymeleafdemo.security.service;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import io.github.rxcats.springbootthymeleafdemo.security.entity.Role;
 import io.github.rxcats.springbootthymeleafdemo.security.entity.User;
+import io.github.rxcats.springbootthymeleafdemo.security.repository.RoleRepository;
 import io.github.rxcats.springbootthymeleafdemo.security.repository.UserRepository;
-import io.github.rxcats.springbootthymeleafdemo.security.repository.UserRoleRepository;
 
 @Service
 public class UserService {
@@ -18,7 +19,7 @@ public class UserService {
     UserRepository userRepository;
 
     @Autowired
-    UserRoleRepository userRoleRepository;
+    RoleRepository roleRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -30,8 +31,10 @@ public class UserService {
     public User saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setActive(1);
-        Role role = userRoleRepository.findByRole("ADMIN");
-        user.setRoles(Set.of(role));
+        Role role = roleRepository.findByRole("ADMIN");
+        List<Role> ids = new ArrayList<>();
+        ids.add(role);
+        user.setRoles(ids);
         return userRepository.save(user);
     }
 
