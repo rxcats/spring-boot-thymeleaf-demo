@@ -4,34 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
-    <link th:href="@{/sb-admin-5.0.2/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/sb-admin-5.0.2/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet">
-    <link th:href="@{/sb-admin-5.0.2/css/sb-admin.css}" rel="stylesheet">
+    <link th:href="@{/sb-admin/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/sb-admin/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet">
+    <link th:href="@{/sb-admin/css/sb-admin.css}" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-dark">
+
 <div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Admin</div>
+        <div class="card-body">
+            <p class="card-text" th:text="${userName + '(' + userEmail + ')'}"></p>
 
-    <form th:action="@{/logout}" method="get">
-        <button class="btn btn-md btn-danger btn-block" name="registration"
-                type="Submit">Logout
-        </button>
-    </form>
-
-    <div class="panel-group" style="margin-top:40px">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span th:utext="${userName}"></span>
-            </div>
-            <div class="panel-body"></div>
-            <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+            <form th:action="@{/logout}" method="get">
+                <button class="btn btn-md btn-danger btn-block" name="registration" type="Submit">Logout</button>
+            </form>
         </div>
     </div>
-
 </div>
 
-<script th:src="@{/sb-admin-5.0.2/vendor/jquery/jquery.min.js}"></script>
-<script th:src="@{/sb-admin-5.0.2/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/sb-admin/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
 </body>
 </html>

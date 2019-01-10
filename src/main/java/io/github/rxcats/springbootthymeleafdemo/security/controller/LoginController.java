@@ -7,8 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
+import io.github.rxcats.springbootthymeleafdemo.security.entity.AdminUserPrincipal;
 import io.github.rxcats.springbootthymeleafdemo.security.entity.User;
 import io.github.rxcats.springbootthymeleafdemo.security.service.UserService;
 
@@ -67,10 +67,10 @@ public class LoginController {
     }
 
     @GetMapping(value="/admin/home")
-    public String home(Model model){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.getUser(auth.getName());
+    public String home(Model model, @AuthenticationPrincipal AdminUserPrincipal user){
+        // Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("userName", user.getName());
+        model.addAttribute("userEmail", user.getUsername());
         model.addAttribute("adminMessage","Content Available Only for Users with Admin Role");
         return "admin/home";
     }
