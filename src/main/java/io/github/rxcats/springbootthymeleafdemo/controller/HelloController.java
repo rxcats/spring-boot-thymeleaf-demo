@@ -1,9 +1,13 @@
 package io.github.rxcats.springbootthymeleafdemo.controller;
 
+import java.util.Map;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +25,19 @@ public class HelloController {
         log.info("getAuthorities:{}", user.getAuthorities());
 
         return "welcome";
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/api/public")
+    @ResponseBody
+    public Map<String, Object> pub() {
+        return Map.of("message", "ok");
+    }
+
+    @GetMapping("/api/private")
+    @ResponseBody
+    public Map<String, Object> pri() {
+        return Map.of("message", "ok");
     }
 
 }
