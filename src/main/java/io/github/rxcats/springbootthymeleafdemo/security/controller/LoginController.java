@@ -1,8 +1,12 @@
 package io.github.rxcats.springbootthymeleafdemo.security.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -47,9 +51,15 @@ public class LoginController {
         }
 
         if (bindingResult.hasErrors()) {
-
+            log.warn("errors:{}", bindingResult.getFieldErrors());
+            List<String> errorMessages = bindingResult.getFieldErrors().stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.toList());
+            model.addAttribute("success", false);
+            model.addAttribute("errorMessages", errorMessages);
         } else {
             userService.saveUser(user);
+            model.addAttribute("success", true);
             model.addAttribute("successMessage", "User has been registered successfully");
             model.addAttribute("user", new User());
         }

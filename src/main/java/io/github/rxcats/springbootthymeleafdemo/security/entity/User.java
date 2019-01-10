@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -29,6 +30,9 @@ public class User {
     @Length(min = 4)
     private String password;
 
+    @Transient
+    private String passwordVerify;
+
     private String name;
 
     // 0: default, 1: active, 2: none active
@@ -51,6 +55,11 @@ public class User {
                 .map(Role::getRoleId)
                 .collect(Collectors.toList());
         }
+    }
+
+    @AssertTrue(message = "password does not match the confirm password.")
+    private boolean isValidPassowrd() {
+        return password.equals(passwordVerify);
     }
 
 }

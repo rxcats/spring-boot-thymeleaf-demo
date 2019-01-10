@@ -39,9 +39,22 @@
                         <label for="password">Password</label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Register User</button>
 
-                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="password" id="password-verify" th:field="*{passwordVerify}" placeholder="Confirm Password" class="form-control" required="required"/>
+                        <label for="password-verify">Confirm Password</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Register User</button>
+                </div>
+
+                <div class="form-group">
+                    <div class="alert alert-success" th:if="${success}" th:text="${successMessage}"></div>
+                    <div class="alert alert-danger" th:unless="${success}" th:each="err : ${errorMessages}" th:text="${err}"></div>
+                </div>
 
             </form>
         </div>
