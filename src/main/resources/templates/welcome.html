@@ -218,17 +218,15 @@
             "paging": false
         });
 
-        $.fn.extend({
-            setModalValue: function (index) {
-                const v = dataTable.row(index).data();
-                $('#e_name').val(v.name);
-                $('#e_position').val(v.position);
-                $('#e_office').val(v.office);
-                $('#e_salary').val(v.salary);
-                $('#e_start_date').val(v.start_date);
-                $('#e_extn').val(v.extn);
-            }
-        });
+        $.fn.setModalValue = function (index) {
+            const v = dataTable.row(index).data();
+            $('#e_name').val(v.name);
+            $('#e_position').val(v.position);
+            $('#e_office').val(v.office);
+            $('#e_salary').val(v.salary);
+            $('#e_start_date').val(v.start_date);
+            $('#e_extn').val(v.extn);
+        };
 
         $('#dataTable tbody').on('click', 'tr', function () {
             // console.log('data', dataTable.row(this).data());
